@@ -15,7 +15,7 @@ const ticketSchema = new Schema(
         active : Boolean
 
     },
-    {timestamps : true} //createdAt and updatedAt
+    {timestamps : true} //createdAt and updatedAt will be added in the schema
 )
 
 const Ticket = mongoose.models.Ticket || mongoose.model("Ticket" , ticketSchema)

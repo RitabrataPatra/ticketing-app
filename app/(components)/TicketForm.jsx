@@ -19,11 +19,11 @@ const TicketForm = () => {
   const router = useRouter();
 
   const startingTicketData = {
-    title: "Example Ticket",
-  description: "This is a test description.",
-  category: "Hardware Problem",
+    title: "",
+  description: "",
+  category: "",
   priority: 1,
-  progress: 10,
+  progress: 0,
   active: false,
   status: "not started",
   };
@@ -101,9 +101,9 @@ const TicketForm = () => {
         </div>
 
         <div className="">
-          <Label htmlFor="category">Category</Label>
+          <label>Category</label>
           <Select
-          name="category"
+            name="category"
           >
             <SelectTrigger className="w-full text-black my-2">
               <SelectValue
