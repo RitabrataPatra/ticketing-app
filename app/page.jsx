@@ -14,18 +14,34 @@ const getTickets = async()=>{
   
 }
 
-const Dashboard = () => {
-  
+const Dashboard = async() => {
+
+  const { tickets } = await getTickets();
+  const uniqueCategories = [
+    ...new Set(tickets?.map(({ category }) => category)), //remove duplicatess
+  ];
+
   return (
     <div className="p-5">
-      <div className="lg:grid grid-cols-2 xl:grid-cols-4 gap-4">
-      <TicketCard/>
-      <TicketCard/>
-      <TicketCard/>
-      <TicketCard/>
+      <div>
+        {tickets && uniqueCategories?.map((uniqueCategory , categoryIndex)=>(
+          <div className='mb-4' key={categoryIndex}>
+              <h2> 
+                {uniqueCategory}
+              </h2>
+              <div className="lg:grid grid-cols-2 xl:grid-cols-4 gap-4">
+                {tickets.filter((ticket) => ticket.category === uniqueCategory).map((filteredTicket , ticketIndex) => (
+                  <TicketCard key={ticketIndex} ticket={filteredTicket  } />
+                ))}
+              </div>
+          </div>
+        ))}
+      
+     
+      </div>
       </div>
       
-    </div>
+    
   )
 }
 
