@@ -4,7 +4,7 @@ import PriorityDisplay from "./PriorityDisplay";
 import ProgressBar from "./ProgressBar";
 import StatusDisplay from "./StatusDisplay";
 
-export const TicketCard = () => {
+export const TicketCard = ({ticket}) => {
   const currentDate = new Date().toLocaleDateString("en-US", {
     weekday: "long",
     year: "numeric",
@@ -18,7 +18,7 @@ export const TicketCard = () => {
   return (
     <div className="flex flex-col bg-slate-700 hover:bg-slate-600  d-hover rounded-md shadow-lg p-3 m-2">
       <div className="flex mb-3">
-        <PriorityDisplay />
+        <PriorityDisplay priority={ticket.priority}/>
         <div className="ml-auto">
           <DeleteBlock />
         </div>
