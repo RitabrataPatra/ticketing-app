@@ -5,13 +5,9 @@ import ProgressBar from "./ProgressBar";
 import StatusDisplay from "./StatusDisplay";
 
 export const TicketCard = ({ticket}) => {
-  const currentDate = new Date().toLocaleDateString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-  const currentTime = new Date().toLocaleTimeString(
+  const date = ticket.createdAt;
+const  currentDate = new Date(date).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+  const currentTime = new Date(date).toLocaleTimeString(
     "en-US",
     { hour: "numeric", minute: "numeric" }
   )
@@ -24,19 +20,20 @@ export const TicketCard = ({ticket}) => {
         </div>
       </div>
 
-      <h4>TICKET TITLE</h4>
+      <h4>{ticket.title}</h4>
       <hr className="h-px border-0 bg-page mb-2 " />
-      <p className="whitspace-pre-wrap">This is the ticket description</p>
+      <p className="whitspace-pre-wrap">{ticket.description}</p>
 
-      <div className="flex-grow"> </div>
+      <div className="flex-grow"> 
       <div className="flex mt-2 ">
         <div className="flex flex-col">
           <p className="text-xs my-1">{currentDate} at {currentTime}</p>
-          <ProgressBar />
+          <ProgressBar progress = {ticket.progress} />
         </div>
         <div className="ml-auto flex items-end">
-          <StatusDisplay />
+          <StatusDisplay status={ticket.status} />
         </div>
+      </div>
       </div>
     </div>
   );

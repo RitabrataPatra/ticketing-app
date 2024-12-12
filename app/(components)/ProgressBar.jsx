@@ -2,14 +2,14 @@
 import { Progress } from '@/components/ui/progress'
 import React, { useEffect, useState } from 'react'
 
-const ProgressBar = () => {
-    const[progress , setProgress] = useState(0)
+const ProgressBar = ({progress}) => {
+    const[progressState , setProgress] = useState(0)
     useEffect(() => {
-        const timer = setTimeout(()=>setProgress(66) , 100)
+        const timer = setTimeout(()=>setProgress(progress) , 100)
         return () => clearTimeout(timer)
     },[])
   return (
-     <Progress value={progress}/>   
+     <Progress value={progressState}/>   
   )
 }
 

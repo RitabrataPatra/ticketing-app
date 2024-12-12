@@ -1,11 +1,11 @@
 import { Badge } from '@/components/ui/badge'
 import React from 'react'
 
-const StatusDisplay = () => {
+const StatusDisplay = ({status}) => {
   return (
     <div>
-      <Badge className="bg-green-500">
-        Done
+      <Badge className={`${status == "Done" ? "bg-green-500" : "bg-yellow-500"}`}>
+        {status}
       </Badge>
     </div>
   )
