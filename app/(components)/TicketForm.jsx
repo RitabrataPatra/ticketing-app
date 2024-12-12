@@ -104,6 +104,13 @@ const TicketForm = () => {
           <label>Category</label>
           <Select
             name="category"
+            onValueChange={(value) =>
+              setFormData((prevState) => ({
+                ...prevState,
+                category: value,
+              }))
+            }
+            defaultValue={formData.category}
           >
             <SelectTrigger className="w-full text-black my-2">
               <SelectValue
@@ -178,6 +185,12 @@ const TicketForm = () => {
             max={100}
             step={1}
             className="mt-2"
+            onValueChange={(value) =>
+              setFormData((prevState) => ({
+                ...prevState,
+                progress: value[0], // Slider returns an array
+              }))
+            }
           />
         </div>
 
@@ -185,12 +198,17 @@ const TicketForm = () => {
           <label>Status</label>
           <Select
             name="status"
+            onValueChange={(value) =>
+              setFormData((prevState) => ({
+                ...prevState,
+                status: value,
+              }))
+            }
           >
             <SelectTrigger className="w-full text-black my-2">
               <SelectValue
                 placeholder="Select status"
-                value={formData.status}
-                onChange={handleChange}
+                className="text-slate-800"
               />
             </SelectTrigger>
             <SelectContent>
