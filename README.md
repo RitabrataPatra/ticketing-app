@@ -3,6 +3,9 @@
 This is a **Next.js** application for creating and managing tickets, with a **MongoDB** backend for data storage. Users can submit tickets by providing details such as title, description, category, priority, progress, and status. The app is designed to be user-friendly and efficient for tracking issues or requests.
 
 ---
+## Live Link
+[Link(Vercel)](https://nextjs.org/)
+
 
 ## Features
 
