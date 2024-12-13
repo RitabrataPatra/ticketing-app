@@ -84,6 +84,8 @@ const TicketForm = ({ticket}) => {
     if (!res.ok) {
       throw new Error("Failed to create Ticket");
     }
+
+    toast("Ticket has been created");
     }
 
     router.refresh();
