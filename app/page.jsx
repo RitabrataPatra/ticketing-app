@@ -4,7 +4,8 @@ import { TicketCard } from "./(components)/TicketCard";
 
 const getTickets = async()=>{
   try {
-    const res = await fetch("http://localhost:3000/api/Tickets" , {
+    const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://vercel.com';
+    const res = await fetch(`${baseUrl}/api/Tickets`, {
       cache : "no-store"
     })
     return res.json()
