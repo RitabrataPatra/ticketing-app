@@ -1,7 +1,7 @@
 import Ticket from "@/app/(models)/Ticket";
 import { NextResponse } from "next/server";
 
-export async function DELETE({params}){
+export async function DELETE(req , {params}){
     try {
         const {id} = params;
         const ticketId = id;
@@ -20,9 +20,9 @@ export async function DELETE({params}){
 }
 
 
-export async function GET({params}){
+export async function GET(req ,  context){
   try {
-    const {id} = params
+    const {id} = await context.params
     const foundTicket = await Ticket.findOne({_id : id})
     return NextResponse.json({
       foundTicket
@@ -43,7 +43,7 @@ export async function PUT(req , {params}){
     const {id} = params ;
     const body = await req.json()
     const ticketData = body.formData;
-    const updatedTicket = await Ticket.findByIdAndUpdate(id , {...ticketData})
+    const updatedTicket = await Ticket.findByIdAndUpdate(id , ticketData, { new: true })
     return NextResponse.json(updatedTicket , {status : 200})
   } catch (error) {
     return NextResponse.json({

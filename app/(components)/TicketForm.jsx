@@ -65,7 +65,7 @@ const TicketForm = ({ticket}) => {
 
         body: JSON.stringify({ formData }),
       });
-      console.log(res);
+      // console.log(res);
       if (!res.ok) {
         throw new Error("Failed to update Ticket");
       }
@@ -80,7 +80,7 @@ const TicketForm = ({ticket}) => {
 
       body: JSON.stringify({ formData }),
     });
-    console.log(res);
+    // console.log(res);
     if (!res.ok) {
       throw new Error("Failed to create Ticket");
     }
