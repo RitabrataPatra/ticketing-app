@@ -60,9 +60,9 @@ const TicketForm = ({ticket}) => {
     if(editMode){
       const res = await fetch(`/api/Tickets/${ticket._id}`, {
         method: "PUT",
-        headers: {
+
           "Content-Type": "application/json",
-        },
+
         body: JSON.stringify({ formData }),
       });
       console.log(res);
@@ -75,9 +75,9 @@ const TicketForm = ({ticket}) => {
     else{
       const res = await fetch("/api/Tickets", {
       method: "POST",
-      headers: {
+
         "Content-Type": "application/json",
-      },
+
       body: JSON.stringify({ formData }),
     });
     console.log(res);

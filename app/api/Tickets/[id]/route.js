@@ -1,7 +1,7 @@
 import Ticket from "@/app/(models)/Ticket";
 import { NextResponse } from "next/server";
 
-export async function DELETE(req , {params}){
+export async function DELETE({params}){
     try {
         const {id} = params;
         const ticketId = id;
@@ -20,7 +20,7 @@ export async function DELETE(req , {params}){
 }
 
 
-export async function GET(req ,  {params}){
+export async function GET({params}){
   try {
     const {id} = params
     const foundTicket = await Ticket.findOne({_id : id})

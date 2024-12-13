@@ -29,7 +29,7 @@ export async function POST(req) {
   }
 }
 
-export async function GET(req , res){
+export async function GET(){
   try {
     console.log("GETTING ALL TICKETS");
     const tickets = await Ticket.find()
