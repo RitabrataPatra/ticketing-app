@@ -54,7 +54,7 @@ export const TicketCard = ({ ticket }) => {
           </div>
         </ContextMenuTrigger>
         <ContextMenuContent className="w-64 backdrop-blur-xl bg-transparent border border-slate-800">
-          <Link href={`${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://ticketing-app-fawn.vercel.app/'}/ticketing/${ticket._id}`}>
+          <Link href={`${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://ticketing-app-fawn.vercel.app'}/ticketing/${ticket._id}`}>
             <ContextMenuItem inset className="text-white hover:cursor-pointer ">
               Update
             </ContextMenuItem>
