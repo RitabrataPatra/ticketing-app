@@ -14,19 +14,33 @@ import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
-const TicketForm = () => {
+const TicketForm = ({ticket}) => {
+
+  const editMode = ticket._id === "new" ? false : true
   const router = useRouter();
 
   const startingTicketData = {
     title: "",
-  description: "",
-  category: "",
-  priority: 1,
-  progress: 0,
-  active: false,
-  status: "not started",
+    description: "",
+    category: "",
+    priority: 1,
+    progress: 0,
+    active: false,
+    status: "not started",
   };
+  //update ticket'
+  if(editMode){
+    startingTicketData["title"] = ticket.title
+    startingTicketData["description"] = ticket.description
+    startingTicketData["category"] = ticket.category
+    startingTicketData["priority"] = ticket.priority
+    startingTicketData["progress"] = ticket.progress
+    startingTicketData["status"] = ticket.status
+    // startingTicketData["active"] = ticket.active
+
+  }
   const [formData, setFormData] = useState(startingTicketData);
 
   const handleChange = (e) => {
@@ -42,25 +56,48 @@ const TicketForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch("/api/Tickets", {
+
+    if(editMode){
+      const res = await fetch(`/api/Tickets/${ticket._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ formData }),
+      });
+      console.log(res);
+      if (!res.ok) {
+        throw new Error("Failed to update Ticket");
+      }
+
+      toast("Ticket has been updated");
+    }
+    else{
+      const res = await fetch("/api/Tickets", {
       method: "POST",
-      headers : {
+      headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({formData}),
+      body: JSON.stringify({ formData }),
     });
     console.log(res);
     if (!res.ok) {
       throw new Error("Failed to create Ticket");
     }
+    }
 
     router.refresh();
+
     router.push("/");
   };
 
+  
+
+
+
   return (
     <div className="flex flex-col justify-center items-center mt-4">
-      <h1>Create Ticket</h1>
+      <h1>{`${editMode ? "Update" : "Create" } Ticket`}</h1>
 
       <form
         action=""
@@ -218,10 +255,10 @@ const TicketForm = () => {
             </SelectContent>
           </Select>
         </div>
-
+            {/* Submit button */}
         <div>
           <Button type="submit" className="w-full">
-            Create Ticket
+            {editMode ? "Update Ticket" : "Create Ticket"}
           </Button>
         </div>
       </form>

@@ -31,7 +31,7 @@ const Dashboard = async() => {
               </h2>
               <div className="lg:grid grid-cols-2 xl:grid-cols-4 gap-4">
                 {tickets.filter((ticket) => ticket.category === uniqueCategory).map((filteredTicket , ticketIndex) => (
-                  <TicketCard key={ticketIndex} ticket={filteredTicket  } />
+                  <TicketCard key={ticketIndex} ticket={filteredTicket} />
                 ))}
               </div>
           </div>
