@@ -16,7 +16,7 @@ const  currentDate = new Date(date).toLocaleDateString('en-US', { day: 'numeric'
       <div className="flex mb-3">
         <PriorityDisplay priority={ticket.priority}/>
         <div className="ml-auto">
-          <DeleteBlock />
+          <DeleteBlock id={ticket._id} />
         </div>
       </div>
 
