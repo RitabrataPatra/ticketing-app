@@ -35,7 +35,7 @@ const Nav = () => {
               </Link>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Tickets</p>
+              <p>Create a ticket</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
