@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "./(components)/Nav";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
           <Nav/>
           <div className="flex-grow overflow-y-auto bg-page text-default-text">
             {children}
+            <Toaster/>
           </div>
           
         </div>
