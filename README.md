@@ -4,7 +4,7 @@ This is a **Next.js** application for creating and managing tickets, with a **Mo
 
 ---
 ## Live Link
-[Link(Vercel)](https://nextjs.org/)
+[Link(Vercel)](https://ticketing-app-fawn.vercel.app/)
 
 
 ## Features

@@ -18,9 +18,13 @@ const Dashboard = async() => {
   const data = await getTickets();
   if (!data || !data.tickets || !Array.isArray(data.tickets)) {
     console.error("Error: Invalid response structure.");
-    return <div>No tickets available.</div>;
+    return (
+      <div className="h-screen flex justify-center items-center">
+        No tickets available.
+      </div>
+    );
   }
-  console.log(data);
+  // console.log(data);
 
   const {tickets} = data;
   const uniqueCategories = [
