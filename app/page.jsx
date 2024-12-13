@@ -15,8 +15,14 @@ const getTickets = async()=>{
 }
 
 const Dashboard = async() => {
+  const data = await getTickets();
+  if (!data || !data.tickets || !Array.isArray(data.tickets)) {
+    console.error("Error: Invalid response structure.");
+    return <div>No tickets available.</div>;
+  }
+  console.log(data);
 
-  const { tickets } = await getTickets();
+  const {tickets} = data;
   const uniqueCategories = [
     ...new Set(tickets?.map(({ category }) => category)), //remove duplicatess
   ];
