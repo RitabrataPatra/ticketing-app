@@ -4,20 +4,24 @@ import { TicketCard } from "./(components)/TicketCard";
 
 const getTickets = async()=>{
   try {
-    const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://ticketing-app-fawn.vercel.app';
-    const res = await fetch(`${baseUrl}/api/Tickets`, {
+    const res = await fetch(`/api/Tickets/`, {
       cache : "no-store"
     })
+    if(!res.ok){
+      throw new Error("Status: " + res.status)
+    }
+    console.log(res)
     return await res.json()
   } catch (error) {
-      console.log("Failed to get tickets", error);
+      console.log("Failed to fetch tickets", error);
   }
   
 }
 
 const Dashboard = async() => {
   const data = await getTickets();
-  if (!data || !data.tickets || !Array.isArray(data.tickets)) {
+  console.log(data)
+  if (!data || !Array.isArray(data.tickets)) {
     console.error("Error: Invalid response structure.");
     return (
       <div className="h-screen flex justify-center items-center">
@@ -28,8 +32,18 @@ const Dashboard = async() => {
   // console.log(data);
 
   const {tickets} = data;
+
+  if (!Array.isArray(tickets)) {
+    console.error("Error: tickets is not an array.");
+    return (
+      <div className="h-screen flex justify-center items-center">
+        No tickets available.
+      </div>
+    );
+  }
+
   const uniqueCategories = [
-    ...new Set(tickets?.map(({ category }) => category)), //remove duplicatess
+    ...new Set(tickets?.map(({ category }) => category).filter(Boolean)), //remove duplicatess
   ];
 
   return (

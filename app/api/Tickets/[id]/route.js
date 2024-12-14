@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function DELETE(req , {params}){
     try {
-        const {id} = params;
+        const {id} = await params;
         const ticketId = id;
         // console.log(ticketId);
         await Ticket.findByIdAndDelete(ticketId);
@@ -40,7 +40,7 @@ export async function GET(req ,  context){
 //UPDATE
 export async function PUT(req , {params}){
   try {
-    const {id} = params ;
+    const {id} = await  params ;
     const body = await req.json()
     const ticketData = body.formData;
     const updatedTicket = await Ticket.findByIdAndUpdate(id , ticketData, { new: true })

@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/context-menu";
 
 export const TicketCard = ({ ticket }) => {
-  const baseUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://ticketing-app-fawn.vercel.app";
   const date = ticket.createdAt;
   const currentDate = new Date(date).toLocaleDateString("en-US", {
     day: "numeric",
@@ -55,7 +54,7 @@ export const TicketCard = ({ ticket }) => {
           </div>
         </ContextMenuTrigger>
         <ContextMenuContent className="w-64 backdrop-blur-xl bg-transparent border border-slate-800">
-          <Link href={`${baseUrl}/ticketing/${ticket._id}`}>
+          <Link href={`/ticketing/${ticket._id}`}>
             <ContextMenuItem inset className="text-white hover:cursor-pointer ">
               Update
             </ContextMenuItem>
